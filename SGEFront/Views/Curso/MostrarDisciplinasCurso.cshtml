@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SGEFront.Models.DisciplinasCursos>
+
+@{
+    ViewBag.Title = "MostrarDisciplinasCurso";
+}
+
+<h2>Mostrar Disciplinas Curso</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Curso.CursoNome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisciplinaID_FK)
+            </th>
+            <th>
+               
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.CursoNome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disciplina.DisciplinaNome)
+                    </td>
+                  
+
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,65 @@
+﻿@model SGEFront.Models.UsuarioViewAdministrador
+
+@{
+    ViewBag.Title = "Administrador";
+}
+
+<h1>Sistema de Gerenciamento Estudantil</h1>
+<div>
+
+    <div>
+        <h4>Administrador do Sistema</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.viewAdministrador.FirstOrDefault().AdministradorId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.viewAdministrador.FirstOrDefault().AdministradorId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.viewAdministrador.FirstOrDefault().Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.viewAdministrador.FirstOrDefault().Nome)
+            </dd>
+        </dl>
+    </div>
+
+    <dl class="dl-horizontal">
+        <h2>Informações</h2>
+        <dt>
+            Total Administradores
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.viewAdministrador.Count)
+        </dd>
+        <dt>Total Cursos</dt>
+        <dd>@Html.DisplayFor(model => model.viewCurso.Count)</dd>
+        <dt>Total Disciplinas</dt>
+        <dd>@Html.DisplayFor(model => model.viewDisciplina.Count)</dd>
+        <dt>Total Alunos</dt>
+        <dd>@Html.DisplayFor(model => model.viewAluno.Count)</dd>
+        <dt>Total Professores</dt>
+        <dd>@Html.DisplayFor(model => model.viewProfessor.Count)</dd>
+
+    </dl>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.viewCurso.FirstOrDefault().CursoNome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownListFor(model => model.viewCurso.FirstOrDefault().CursoNome, (SelectList)ViewBag.Cursos, "Selecione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.viewCurso.FirstOrDefault().CursoNome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
