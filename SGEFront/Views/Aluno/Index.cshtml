@@ -67,6 +67,15 @@
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             Excluir
                         </a>
+
+                        <a href="@Url.Action("CadastrarNotasAlunos", "Aluno", new { id = item.AlunoId })" class="btn btn-info btn-xs">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            Editar Notas
+                        </a>
+                        <a href="@Url.Action("MostrarInfoAlunos", "Aluno", new { id = item.AlunoId })" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            Info Notas
+                        </a>
                     </td>
                 </tr>
 

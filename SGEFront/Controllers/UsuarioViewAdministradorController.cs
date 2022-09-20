@@ -33,7 +33,7 @@ namespace SGEFront.Controllers
             admin.viewCurso = curso;
             admin.viewDisciplina=disciplina;
             admin.viewAluno = aluno;
-            admin.viewProfessor = professor;
+            admin.viewProfessor = professor;    
            
             return View(admin);
         }

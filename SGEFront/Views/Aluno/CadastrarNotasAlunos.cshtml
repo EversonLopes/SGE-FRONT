@@ -1,0 +1,65 @@
+﻿@model  IEnumerable<SGEFront.Models.DisciplinasAlunos>
+@using SGEFront.Models;
+@{
+    ViewBag.Title = "NotasAlunos";
+}
+
+<h2>NotasAlunos</h2>
+
+@using (Html.BeginForm("CadastrarNotasAlunos", "Aluno", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.FirstOrDefault().Id);
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstOrDefault().Aluno.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownListFor(model => model.FirstOrDefault().AlunoID_FK, (SelectList)ViewBag.Alunos, "Selecione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstOrDefault().AlunoID_FK, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstOrDefault().Disciplina.DisciplinaNome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownListFor(model => model.FirstOrDefault().DisciplinaID_FK, (SelectList)ViewBag.Disciplinas, "Selecione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstOrDefault().DisciplinaID_FK, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstOrDefault().Nota1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstOrDefault().Nota1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstOrDefault().Nota1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstOrDefault().Nota2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstOrDefault().Nota2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstOrDefault().Nota2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-default" />
+        </div>
+    </div>
+
+</div>
+}
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

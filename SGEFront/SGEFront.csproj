@@ -225,6 +225,8 @@
     <Content Include="Views\Funcionario\Create.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
     <Content Include="Views\UsuarioViewAdministrador\Index.cshtml" />
+    <Content Include="Views\Aluno\CadastrarNotasAlunos.cshtml" />
+    <Content Include="Views\Aluno\MostrarInfoAlunos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,6 +27,34 @@
         </dl>
     </div>
 
+
+    <a href="@Url.Action("Index", "Curso")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Cursos
+    </a>
+    <a href="@Url.Action("Index", "Disciplina")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Disciplinas
+    </a>
+    <a href="@Url.Action("Index", "Aluno")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Alunos
+    </a>
+    <a href="@Url.Action("Index", "Administrador")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Administradors
+    </a>
+    <a href="@Url.Action("Index", "Funcionario")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Funcionários
+    </a>
+    <a href="@Url.Action("Index", "Professor")" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        Professores
+    </a>
+
+
+
     <dl class="dl-horizontal">
         <h2>Informações</h2>
         <dt>
@@ -43,19 +71,22 @@
         <dd>@Html.DisplayFor(model => model.viewAluno.Count)</dd>
         <dt>Total Professores</dt>
         <dd>@Html.DisplayFor(model => model.viewProfessor.Count)</dd>
-
+        <dt>Total Funicionários</dt>
+        <dd>@Html.DisplayFor(model => model.viewFuncionario.Count)</dd>
     </dl>
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.viewCurso.FirstOrDefault().CursoNome, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
 
-            @Html.DropDownListFor(model => model.viewCurso.FirstOrDefault().CursoNome, (SelectList)ViewBag.Cursos, "Selecione", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.viewCurso.FirstOrDefault().CursoNome, "", new { @class = "text-danger" })
+    <!--
+        <div class="form-group">
+            d@Html.LabelFor(model => model.viewCurso.FirstOrDefault().CursoNome, htmlAttributes: new { d@class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                d@Html.DropDownListFor(model => model.viewCurso.FirstOrDefault().CursoNome, (SelectList)ViewBag.Cursos, "Selecione", new { d@class = "form-control" })
+                d@Html.ValidationMessageFor(model => model.viewCurso.FirstOrDefault().CursoNome, "", new { d@class = "text-danger" })
+            </div>
         </div>
-    </div>
-
+    -->
 
 
 

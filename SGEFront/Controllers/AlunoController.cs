@@ -14,6 +14,8 @@ namespace SGEFront.Controllers
         AlunoService alunoService = new AlunoService();
       
        CursoService cursoService = new CursoService();
+        ProfessorService professorService = new ProfessorService();
+        DisciplinaService disciplinaService = new DisciplinaService();  
 
 
         // GET: Aluno
@@ -134,6 +136,90 @@ namespace SGEFront.Controllers
             {
                 return View();
             }
+        }
+
+
+
+ 
+
+        public ActionResult CadastrarNotasAlunos(int id) {
+
+            var aluno = alunoService.BuscarAluno(id);
+            var professor=professorService.BuscarProfessor(id);
+            var curso = cursoService.BuscarCurso(aluno.CursoID_FK);
+            var lista = aluno.DisciplinasAlunos;
+            var lista2 = curso.DisciplinasCursos;
+
+
+            ViewBag.Alunos = new SelectList(alunoService.ListarAlunos().Where( o => o.CursoID_FK==aluno.Curso.CursoId), "AlunoId", "Nome");
+            ViewBag.Disciplinas = new SelectList(disciplinaService.ListarDisciplinas().Where(o => lista2.Any(o2 => o2.DisciplinaID_FK == o.DisciplinaId)), "DisciplinaId", "DisciplinaNome"); ;
+
+
+
+
+
+            return View(lista);
+        }
+
+
+
+        [HttpPost]
+        public ActionResult CadastrarNotasAlunos(int id, DisciplinasAlunos disciplinasAlunos)
+        {
+
+
+            var aluno = alunoService.BuscarAluno(id);            
+            //aluno.DisciplinasAlunos = new List<DisciplinasAlunos>();            
+            
+
+            DisciplinasAlunos disciplinaAluno = new DisciplinasAlunos();
+
+            disciplinaAluno.AlunoID_FK = aluno.AlunoId;
+            disciplinaAluno.DisciplinaID_FK = disciplinasAlunos.DisciplinaID_FK;
+            disciplinaAluno.Nota1 = disciplinasAlunos.Nota1;
+            disciplinaAluno.Nota2 = disciplinasAlunos.Nota2;
+            disciplinaAluno.MediaFinal = ((disciplinaAluno.Nota1) + (disciplinaAluno.Nota2)) / 2;
+
+
+            aluno.DisciplinasAlunos.Add(disciplinaAluno);                         
+
+
+
+
+            if (ModelState.IsValid)
+            {
+                //Efetivando a edição da tecnologia, utilizando o serviço de edição
+                var alunoEdit = alunoService.EditarAluno(id, aluno);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View("Index");
+
+
+
+        }
+
+        [HttpGet]
+        public ActionResult MostrarInfoAlunos(int id)
+        {
+            var buscarAluno = alunoService.BuscarAluno(id);
+
+            for (int i = 0; i < buscarAluno.DisciplinasAlunos.Count; i++)
+            {
+                buscarAluno.DisciplinasAlunos[i].Aluno = new Aluno();
+                buscarAluno.DisciplinasAlunos[i].Aluno.AlunoId = buscarAluno.AlunoId;
+                buscarAluno.DisciplinasAlunos[i].Aluno.Nome = buscarAluno.Nome;
+
+                i = i++;
+            }
+
+
+            var lista = buscarAluno.DisciplinasAlunos;
+
+            //retorna a lista de tecnologias da vaga, para ser apresentada na view, e ter a opções de cadastro de peso.
+            return View(lista);
+
         }
     }
 }

@@ -67,7 +67,7 @@ namespace SGEFront.Service
 
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-                    bvar retorno = JsonConvert.DeserializeObject<Curso>(streamReader.ReadToEnd());
+                    var retorno = JsonConvert.DeserializeObject<Curso>(streamReader.ReadToEnd());
 
                     if (retorno != null)
                     {

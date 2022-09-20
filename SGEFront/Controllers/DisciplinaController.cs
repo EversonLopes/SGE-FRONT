@@ -41,7 +41,7 @@ namespace SGEFront.Controllers
         {
             ViewBag.Professores = new SelectList(professorService.ListarProfessores(), "ProfessorId", "Nome");
 
-            return View(nameof(Create));
+        
             return View(nameof(Create));
         }
 
